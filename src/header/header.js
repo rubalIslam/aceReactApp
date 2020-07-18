@@ -30,12 +30,14 @@ class Header extends Component {
                     src={"assets/img/logo/logoace.png"}
                     alt=""
                   />
-                  <a href={"index.html"} className="logoanchor">
-                    <img
-                      className="logotext"
-                      src={"assets/img/logo/aceLogo.png"}
-                      alt=""
-                    />
+                  <a className="logoanchor">
+                    <Link to="/">
+                      <img
+                        className="logotext"
+                        src={"assets/img/logo/aceLogo.png"}
+                        alt=""
+                      />
+                    </Link>
                   </a>
                 </div>
 

@@ -1,7 +1,48 @@
 import React, { Component } from "react";
 import bg from '../assets/img/gallery/bg1.jpg';
+import { firebaseEngineers, firebase } from "../firebase";
+import { firebaseLooper } from "../components/ui/misc";
+import { Promise } from "core-js";
 
 class Main extends Component {
+
+  state = {
+    loading: true,
+    engineers: []
+  };
+
+  componentDidMount() {
+    firebaseEngineers.once("value").then((snapshot) => {
+      const engineers = firebaseLooper(snapshot);
+      let promises = [];
+      console.log(engineers);
+
+      for (let key in engineers) {
+        promises.push(
+          new Promise((resolve, reject) => {
+            firebase
+              .storage()
+              .ref("engineers")
+              .child(engineers[key].image)
+              .getDownloadURL()
+              .then((image) => {
+                engineers[key].image = image;
+                resolve();
+              });
+          })
+        );
+      }
+
+      Promise.all(promises).then(() => {
+        this.setState({
+          loading: false,
+          engineers,
+        });
+      });
+    });
+  }
+
+
   render() {
     return (
       <div className="">
@@ -389,6 +430,7 @@ class Main extends Component {
         </div>
 
         <div className="team-area section-padding30">
+        
           <div className="container">
             <div className="row justify-content-center">
               <div className="cl-xl-7 col-lg-8 col-md-10">
@@ -399,48 +441,22 @@ class Main extends Component {
               </div>
             </div>
             <div className="row">
+            {this.state.engineers.map((engineer, i) => (
               <div className="col-xl-4 col-lg-4 col-md-6 col-sm-">
                 <div className="single-team mb-30">
                   <div className="team-img">
-                    <img src={"../assets/img/gallery/jewel.jpg"} alt="" />
+                    <img src={engineer.image} alt="" />
                   </div>
                   <div className="team-caption">
                     <h3>
-                      <a href="#">Jewel Ahmed Choudhury</a>
+        <a href="#">{engineer.name} {engineer.lastname}</a>
                     </h3>
-                    <span>B.Tech (HVAC)</span>
-                    <span>2 Years experience in Interior Designs</span>
+        <span>{engineer.designation} ({engineer.degree})</span>
+        <span>{engineer.details}</span>
                   </div>
                 </div>
               </div>
-              <div className="col-xl-4 col-lg-4 col-md-6 col-sm-">
-                <div className="single-team mb-30">
-                  <div className="team-img">
-                    <img src={"../assets/img/gallery/imdad.jpg"} alt="" />
-                  </div>
-                  <div className="team-caption">
-                    <h3>
-                      <a href="#">Imdadur Rahman Laskar</a>
-                    </h3>
-                    <span>B.Tech (Civil)</span>
-                    <span>2.5 years experience in Lighting Designs</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-xl-4 col-lg-4 col-md-6 col-sm-">
-                <div className="single-team mb-30">
-                  <div className="team-img">
-                    <img src={"../assets/img/gallery/kamrul.jpg"} alt="" />
-                  </div>
-                  <div className="team-caption">
-                    <h3>
-                      <a href="#">Kamrul Islam Mazarbhuiya</a>
-                    </h3>
-                    <span>B.Tech (Civil)</span>
-                    <span>2 years experience in Autocad(3D Design Expert)</span>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

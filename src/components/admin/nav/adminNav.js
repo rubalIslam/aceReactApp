@@ -18,6 +18,18 @@ const AdminNav = () => {
         {
             title: 'Add Gallery',
             linkTo: '/addGallery'
+        },
+        {
+            title: 'Add Engineers',
+            linkTo: '/addEngineers'
+        },
+        {
+            title: 'Engineers',
+            linkTo: '/engineers'
+        },
+        {
+            title: 'Add Services',
+            linkTo: '/addServices'
         }
     ]
 

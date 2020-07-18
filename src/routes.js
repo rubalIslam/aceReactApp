@@ -13,6 +13,11 @@ import Contacts from '../src/components/contacts/contacts';
 import Customers from '../src/components/customers/customers';
 import AddGallery from '../src/components/admin/addGallery/AddGallery';
 import Home from "./main/main";
+import AddEditEngineers from "./components/admin/addEditEngineers.js/addEditEngineers";
+import Engineers from "./components/admin/engineers/Engineers";
+import Aboutus from "./components/aboutus/aboutus";
+import Services from "./components/services/services";
+import AddServices from "./components/admin/addServices/addServices";
 const Routes = (props) => {
   return (
     <Layout>
@@ -35,7 +40,30 @@ const Routes = (props) => {
           exact
           component={AddGallery}
         />
-
+        <PrivateRoute
+          {...props}
+          path="/addEngineers/:id"
+          exact
+          component={AddEditEngineers}
+          />
+        <PrivateRoute
+          {...props}
+          path="/addEngineers"
+          exact
+          component={AddEditEngineers}
+        />
+        <PrivateRoute
+          {...props}
+          path="/addServices"
+          exact
+          component={AddServices}
+        />
+        <PrivateRoute
+          {...props}
+          path="/engineers"
+          exact
+          component={Engineers}
+          />
        <PublicRoute
           {...props}
           path="/sign"
@@ -48,6 +76,18 @@ const Routes = (props) => {
           exact
           component={Contacts}
        />
+       <PublicRoute
+          {...props}
+          path="/aboutus"
+          exact
+          component={Aboutus}
+       />
+       <PublicRoute
+          {...props}
+          path="/services"
+          exact
+          component={Services}
+         />
        <PublicRoute
           {...props}
           path="/gallery"

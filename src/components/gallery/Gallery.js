@@ -8,7 +8,7 @@ class Gallery extends Component {
   state = {
     loading: true,
     gallerys: [],
-    bedrooms: 2
+    bedrooms: 2,
   };
 
   componentDidMount() {
@@ -42,7 +42,6 @@ class Gallery extends Component {
     });
   }
 
-
   render() {
     const bg = "./assets/img/gallery/bg.jpg";
     return (
@@ -55,16 +54,12 @@ class Gallery extends Component {
                   className="room-img imageclass set-bg"
                   style={{ width: 200, height: 200 }}
                 >
-                 {/* <img
+                  {/* <img
                     style={{ width: 400, height: 300 }}
                     className="imageclass"
                     src="./assets/img/gallery/bg.jpg"
                  />*/}
-                 <img
-                  
-                  className="imageGal"
-                  src={gallery.image}
-                />
+                  <img className="imageGal" src={gallery.image} />
                 </div>
                 <div className="room-text" style={{ width: 200, height: 200 }}>
                   <div
@@ -72,7 +67,7 @@ class Gallery extends Component {
                     style={{ width: 200, height: 120 }}
                   >
                     <div className="roomTitle pl-2">
-                      <h5 style={{color:"black", fontWeight: "bold"}}>
+                      <h5 style={{ color: "black", fontWeight: "bold" }}>
                         {gallery.heading}
                       </h5>
                       <div className="row">
@@ -82,7 +77,12 @@ class Gallery extends Component {
                         </div>
                         <div className="large-width col-lg-6">
                           <i className="flaticon-cursor"></i>{" "}
-          <span className="text-white"  style={{color:"white", fontWeight: "bold"}}>{gallery.bhk}</span>
+                          <span
+                            className="text-white"
+                            style={{ color: "white", fontWeight: "bold" }}
+                          >
+                            {gallery.bhk}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -91,7 +91,7 @@ class Gallery extends Component {
                     <div className="room-info row">
                       <div className="beds col-lg-4 text-white">
                         <p style={{ fontSize: 10 }} className="text-white">
-                <span>{gallery.bhk.charAt(0)}</span> Bedroom
+                          <span>{gallery.bhk.charAt(0)}</span> Bedroom
                         </p>
                         <img src="./assets/img/rooms/bed.png" alt="" />
                       </div>
@@ -111,15 +111,15 @@ class Gallery extends Component {
                   </div>
                   <div className="room-price pl-10">
                     <p className="text-white">Construction Cost</p>
-          <span className="text-white">₹{gallery.cost}</span>
+                    <span className="text-white">₹{gallery.cost}</span>
                   </div>
                   <a href="#" className="site-btn btn-line pl-10">
                     View Property
                   </a>
                 </div>
               </div>
-            </div>)
-          )}
+            </div>
+          ))}
         </div>
       </div>
     );
