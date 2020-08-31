@@ -5,13 +5,13 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const config = {
-  apiKey: "AIzaSyCGZ4cbtXtEOsSELmWbVRPiB6uRuFYICaI",
+  apiKey: "",
   authDomain: "aceconstructionhkd.firebaseapp.com",
-  databaseURL: "https://aceconstructionhkd.firebaseio.com",
+  databaseURL: "",
   projectId: "aceconstructionhkd",
-  storageBucket: "aceconstructionhkd.appspot.com",
-  messagingSenderId: "308366225703",
-  appId: "1:308366225703:web:44b6b7c24fe36e3951f902"
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
   };
 
 firebase.initializeApp(config);
