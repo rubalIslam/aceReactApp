@@ -1,6 +1,25 @@
 import React, { Component } from 'react';
+import { firebaseLooper } from '../components/ui/misc';
+import { firebaseFooters } from "../firebase";
 
 class Footer extends Component {
+
+    state = {
+        loading: true,
+        footers: [],
+    }
+
+    componentDidMount() {
+        firebaseFooters.once("value").then((snapshot) => {
+            const footers = firebaseLooper(snapshot);
+            let promises = [];
+            //console.log(footers[0]);
+            this.setState({
+                footers:footers[0]
+            })
+        })
+    }
+
     render() {
         return (
             <div>
@@ -13,14 +32,22 @@ class Footer extends Component {
                             <div className="footer-logo">
                                 <a href="index.html"><img src="assets/img/logo/aceLogo.png" alt=""/></a>
                             </div>
+                            {console.log(this.state.footers)}
+                            {console.log(this.state.footers.email1)}
                             <div className="footer-tittle">
                                 <div className="footer-pera">
-                                    <p className="info1">Customer Satisfaction is our main motto.</p>
+                                    <p className="info1">
+                                        Customer Satisfaction is our main motto.
+                                    </p>
                                 </div>
                             </div>
                             <div className="footer-number">
-                                <h4><span>+91 </span>84029 86734</h4>
-                                <p>aceconstruction@gmail.com</p>
+                                <h4><span>+91 </span>{this.state.footers.number1}</h4>
+                                <h4><span>+91 </span>{this.state.footers.number2}</h4>
+                                <h4><span>+91 </span>{this.state.footers.number3}</h4>
+                                <h4><span>+91 </span>{this.state.footers.number4}</h4>
+                                <p>{this.state.footers.email1}</p>
+                                <p>{this.state.footers.email2}</p>
                             </div>
                         </div>
                     </div>
@@ -72,7 +99,7 @@ class Footer extends Component {
                         <div className="footer-social f-right">
                             <span>Follow Us</span>
                             <a href="#"><i className="fab fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/"><i className="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/aceconsultancyc/"><i className="fab fa-facebook-f"></i></a>
                             <a href="#"><i className="fas fa-globe"></i></a>
                             <a href="#"><i className="fab fa-instagram"></i></a>
                         </div>

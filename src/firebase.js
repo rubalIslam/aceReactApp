@@ -5,13 +5,13 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const config = {
-  apiKey: "",
-  authDomain: "aceconstructionhkd.firebaseapp.com",
-  databaseURL: "",
-  projectId: "aceconstructionhkd",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyCGZ4cbtXtEOsSELmWbVRPiB6uRuFYICaI",
+    authDomain: "aceconstructionhkd.firebaseapp.com",
+    databaseURL: "https://aceconstructionhkd.firebaseio.com",
+    projectId: "aceconstructionhkd",
+    storageBucket: "aceconstructionhkd.appspot.com",
+    messagingSenderId: "308366225703",
+    appId: "1:308366225703:web:44b6b7c24fe36e3951f902"
   };
 
 firebase.initializeApp(config);
@@ -24,6 +24,7 @@ const firebaseTeams = firebaseDB.ref('teams');
 const firebasePlayers = firebaseDB.ref('players');
 const firebaseChats = firebaseDB.ref('chats');
 const firebaseEngineers = firebaseDB.ref('engineers');
+const firebaseFooters = firebaseDB.ref('footers');
 
 export {
     firebase,
@@ -34,5 +35,6 @@ export {
     firebaseContacts,
     firebaseGallery,
     firebaseEngineers,
+    firebaseFooters,
     firebaseDB
 }
